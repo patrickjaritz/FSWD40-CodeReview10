@@ -24,7 +24,7 @@ $userRow=mysqli_fetch_array($res, MYSQLI_ASSOC);
 <head>
 
   
-    <title>Welcome - <?php echo $userRow['first_name']; ?></title>
+    <title>Welcome - <?php echo $userRow['user_id']; ?></title>
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
 
 <style type="text/css">
