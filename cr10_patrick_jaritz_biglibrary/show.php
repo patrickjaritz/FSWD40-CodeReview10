@@ -98,7 +98,7 @@ if($_GET['isbn']) {
 <!-- The following part of the code is not mine -->
 
  <?php
-              $sql2 = "SELECT * FROM media";
+              $sql2 = "SELECT * FROM media WHERE isbn = '$isbn'";
     
                 $result = $conn->query($sql2);
                 if (!$result) {
@@ -138,17 +138,19 @@ if($_GET['isbn']) {
 
 
 </div>
- 
-<div style="text-align: right;" class="alert alert-info" role="alert">
-
-
-<a href="home.php">Back</a>
-
-
-</div>
+ <br>
 
 
 </body>
+
+<br>
+<footer>
+<div style="text-align: right;" class="alert alert-info" role="alert">
+<a href="home.php">Back</a>
+</div>
+
+
+    </footer>
 
 </html>
 

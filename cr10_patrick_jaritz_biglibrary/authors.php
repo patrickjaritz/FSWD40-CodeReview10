@@ -24,7 +24,7 @@ $userRow=mysqli_fetch_array($res, MYSQLI_ASSOC);
 <head>
 
   
-    <title>Welcome to the BigLibrary,  <?php echo $userRow['first_name']; ?></title>
+    <title>Publishers requested by <?php echo $userRow['first_name']; ?></title>
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
 
 <style type="text/css">
@@ -71,10 +71,10 @@ $userRow=mysqli_fetch_array($res, MYSQLI_ASSOC);
    
 </div>
 
-   <h2>BigList of Media</h2>
+   <h2>Authors</h2>
  
 
-<div class="mediaList">
+<div class="manageMedia">
 
   
     <table border="2" cellspacing="0" cellpadding="5">
@@ -85,19 +85,13 @@ $userRow=mysqli_fetch_array($res, MYSQLI_ASSOC);
 
         
 
-                <th>Title</th>
+                <th>First Name</th>
 
-                <th>Author First Name</th>
-
-             <th>Author Last Name</th>
-
-                <th>Media Status</th>
-
-                <th>Show Media Button</th>
-
-
+                <th>Last Name</th>
 
         
+
+                
 
             </tr>
 
@@ -108,49 +102,39 @@ $userRow=mysqli_fetch_array($res, MYSQLI_ASSOC);
 
             <?php
 
-$sql = "SELECT * FROM author INNER JOIN media ON author.author_id = media.fk_author_id";
-
-$result = $connect->query($sql);
 
 
+            $sql = "SELECT * FROM author INNER JOIN media ON author.author_id = media.fk_author_id";
 
-if($result->num_rows > 0) {
+            $result = $connect->query($sql);
 
-    while($row = $result->fetch_assoc()) {
+ 
 
-        echo "<tr>
+            if($result->num_rows > 0) {
 
-    
-        <td> <a href='show.php?isbn=".$row['isbn']."'> ".$row['title']."</a></td>
-        <td>".$row['first_name']."</td>
-        <td>".$row['last_name']."</td>
-        <td>".$row['media_status']."</td>
-    
+                while($row = $result->fetch_assoc()) {
 
-        <td>
+                    echo "<tr>
 
-            <a href='show.php?isbn=".$row['isbn']."'><button type='button'>Show Media</button></a>
+                        
+                
+                    <td>".$row['first_name']."</td>
+                    <td> <a href='show.php?isbn=".$row['isbn']."'> ".$row['last_name']."</a></td>
+                        
+                    
+                    </tr>";
 
+                }
+           
 
-        </td>
-        
-        </tr>";
-
-    }
-
-
-} 
-
+            } 
   
-
-
-
-        else {
+              
+            else {
 
                 echo "<tr><td colspan='5'><center>No Data Avaliable</center></td></tr>";
 
             }
-
             ?>
 
 
@@ -161,24 +145,14 @@ if($result->num_rows > 0) {
     </table>
 
 </div>
-
-
 <br>
 
-<div style="text-align: left;" class="alert alert-secondary" role="alert">
+<div style="text-align: right;" class="alert alert-primary" role="alert">
 
-<a href="publishers.php"><h5>Publishers</h5></a>
-<a href="authors.php"><h5>Authors</h5></a>
+<a href="home.php">Back</a>
 </div>
-
-
-
-
+ 
 
 </body>
-
-<?php
- include "include_footer.php";
- ?>
 
 </html>
